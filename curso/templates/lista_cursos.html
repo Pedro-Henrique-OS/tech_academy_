@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+Lista de Cursos
+{% endblock %}
+
+{% block head %}
+<style>
+    $itemGrow: 1.2;
+$duration: 250ms;
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Sarala:wght@400;700&display=swap');
+
+
+* {
+    margin: 0; /* Remove a margem padrão */
+    padding: 0; /* Remove o padding padrão */
+    box-sizing: border-box; /* Inclui padding e bordas no tamanho total do elemento */
+    text-decoration: none; /* Remove o sublinhado de links por padrão */
+}
+
+
+
+body {
+    margin: 0;
+    background-color: #000;
+}
+.cabecalho-logo{
+    display: flex; /* Utiliza flexbox para layout */
+    padding-top: 20px;
+    padding-left: 30px;
+    height: 50px;
+}
+
+.landing_page {
+    background-color: #000; /* Cor de fundo da página */
+    color: #fff; /* Cor do texto */
+    font-family: 'Sarala', sans-serif;
+}
+
+.titulo {
+    text-align: center;
+    color: rgb(84, 19, 51); /* Cor do título */
+    font-size: 2.5em; /* Tamanho do título */
+    padding-top: 20px;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    font-family: 'Sarala', sans-serif;
+}
+
+.lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px; /* Espaçamento entre os itens */
+    padding: 20px;
+}
+
+.curso-item {
+    background-color: #222; /* Cor de fundo dos itens do curso */
+    border-radius: 10px;
+    padding: 15px;
+    transition: transform 250ms;
+}
+
+.curso-item:hover {
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+}
+
+.curso-item img {
+    width: 100%;
+    height: auto; /* Ajusta a imagem dentro do item */
+    border-radius: 10px;
+}
+
+.curso-descricao {
+    color: #ccc; /* Cor da descrição */
+    margin: 10px 0;
+}
+
+// Remove the arrow for Mobile
+@media only screen and (max-width: 600px) {
+  a.arrow__btn {
+    display:none;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<body class="landing_page">
+
+    <h1 class="titulo">Lista de Cursos</h1>
+    <div class="lista">
+        {% for curso in lista_cursos_recentes  %}
+        <a href="{% url 'curso:login' %}">
+            <div class="curso-item">
+                <h2 class="h2">{{ curso.titulo }}</h2>
+                <img src="{{ curso.thumb.url }}" alt="{{ curso.titulo }}">
+                <p class="curso-descricao">{{ curso.descricao }}</p>
+                <p>Categoria: {{ curso.categoria }}</p>
+                
+            </div>
+        {% endfor %}
+    </a>
+    </div>
+</body>
+
+{% endblock %}

@@ -1,0 +1,352 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+HomePage Hashflix
+{% endblock %}
+
+{% block head %}
+<style>
+    
+    /* Importa fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Sarala:wght@400;700&display=swap');
+
+/* Reseta as margens e paddings de todos os elementos */
+* {
+    margin: 0; /* Remove a margem padrão */
+    padding: 0; /* Remove o padding padrão */
+    box-sizing: border-box; /* Inclui padding e bordas no tamanho total do elemento */
+    text-decoration: none; /* Remove o sublinhado de links por padrão */
+}
+
+/* Estilos gerais para o corpo da página */
+.landing_page {
+    font-size: 100%; /* Define o tamanho da fonte padrão */
+    background-image: url('../imagens/fundo.png'); /* Define a imagem de fundo da página */
+    background-size: cover; /* Faz a imagem cobrir toda a área */
+    background-position: center; /* Centraliza a imagem de fundo */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    height: 100vh; /* Faz a altura da tela ocupar 100% da altura da viewport */
+}
+
+/* Estilos para o cabeçalho */
+.cabecalho {
+    display: flex; /* Utiliza flexbox para layout */
+    flex-direction: row; /* Alinha os filhos na horizontal */
+    align-items: center; /* Centraliza verticalmente os itens do cabeçalho */
+    justify-content: space-around; /* Espaça os itens uniformemente */
+    padding: 24px; /* Adiciona espaçamento interno ao cabeçalho */
+}
+
+/* Estilos para a logo no cabeçalho */
+.cabecalho-logo {
+    height: 50px; /* Define a altura da logo */
+    
+}
+
+/* Estilos para o menu do cabeçalho */
+.cabecalho-menu {
+    display: flex; /* Utiliza flexbox para layout */
+    gap: 100px; /* Adiciona espaço entre os itens do menu */
+    height: 72px; /* Define a altura do menu */
+    margin-left: auto; 
+   
+}
+
+/* Estilos para os itens do menu */
+.cabecalho-menu-item {
+    font-family: 'Sarala', sans-serif; /* Define a fonte para os itens do menu */
+    color: white; /* Define a cor do texto como branco */
+    font-weight: 200; /* Define a espessura da fonte */
+    font-size: 40px; /* Define o tamanho da fonte */
+}
+
+/* Estilos para o item de login no menu */
+
+
+/* Estilos para a área de conteúdo principal */
+.conteudo {
+    padding-top: 150px; /* Adiciona espaço acima do conteúdo principal */
+    margin-bottom: 48px; /* Adiciona margem abaixo do conteúdo */
+}
+
+/* Estilos para o conteúdo principal */
+.conteudo-principal {
+    display: flex; /* Utiliza flexbox para layout */
+    flex-direction: row; /* Alinha os filhos na horizontal */
+    align-items: center; /* Centraliza verticalmente os itens do conteúdo */
+    justify-content: flex-start; /* Alinha os itens à esquerda */
+}
+
+/* Estilos para a imagem principal do conteúdo */
+.conteudo-principal-imagem {
+    height: 430px; /* Define a altura da imagem */
+    margin-left: 100px; /* Adiciona margem à esquerda da imagem */
+    margin-right: 60px; /* Adiciona margem à direita da imagem */
+}
+
+/* Estilos para o texto no conteúdo principal */
+.conteudo-principal-escrito {
+    display: flex; /* Utiliza flexbox para layout */
+    flex-direction: column; /* Alinha os filhos na vertical */
+    gap: 32px; /* Espaçamento entre os itens */
+    margin-left: 20px; /* Adiciona margem à esquerda para aproximar da imagem */
+}
+
+/* Estilos para o título no conteúdo principal */
+.conteudo-principal-escrito-titulo {
+    font-family: 'Sarala', sans-serif; /* Define a fonte para o título */
+    font-weight: 400; /* Define a espessura da fonte */
+    font-size: 64px; /* Define o tamanho da fonte do título */
+    color: rgb(202, 110, 156); /* Define a cor do título */
+}
+
+/* Estilos para o parágrafo no conteúdo principal */
+.conteudo-principal-escrito-paragrafo {
+    font-family: 'Sarala', sans-serif; /* Define a fonte para o parágrafo */
+    font-weight: 400; /* Define a espessura da fonte */
+    font-size: 40px; /* Define o tamanho da fonte do parágrafo */
+    color: white; /* Define a cor do texto como branco */
+}
+
+/* Estilos para o contêiner de botões no conteúdo principal */
+.conteudo-principal-escrito-botoes {
+    display: flex; /* Utiliza flexbox para layout */
+    gap: 16px; /* Espaçamento entre os botões */
+}
+
+/* Estilos para o primeiro botão no conteúdo principal */
+.conteudo-principal-escrito-botao1 {
+    color: white; /* Define a cor do texto como branco */
+    width: 400px; /* Define a largura do botão */
+    height: 80px; /* Define a altura do botão */
+    border: none; /* Remove a borda do botão */
+    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.25); /* Adiciona sombra ao botão */
+    border-radius: 20px; /* Define cantos arredondados */
+    font-family: 'Sarala', sans-serif; /* Define a fonte para o botão */
+    font-weight: 400; /* Define a espessura da fonte */
+    font-size: 34px; /* Define o tamanho da fonte do botão */
+    background-color: rgb(84, 19, 51); /* Define a cor de fundo do botão */
+}
+
+/* Estilos para o segundo botão no conteúdo principal */
+.conteudo-principal-escrito-botao2 {
+    background-color: rgba(255, 255, 255, 0); /* Define fundo transparente */
+    width: 400px; /* Define a largura do botão */
+    height: 80px; /* Define a altura do botão */
+    border: none; /* Remove a borda do botão */
+    border-radius: 20px; /* Define cantos arredondados */
+    font-family: 'Sarala', sans-serif; /* Define a fonte para o botão */
+    font-weight: 400; /* Define a espessura da fonte */
+    font-size: 34px; /* Define o tamanho da fonte do botão */
+    color: white; /* Define a cor do texto como branco */
+}
+
+/* Estilos para texto com cor branca */
+.texto {
+    color: white; /* Define a cor do texto como branco */
+}
+
+/* pagina de cursos e login*/
+
+.cursos {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+    
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    
+    .form-container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        text-align: center;
+    }
+    
+    form h2 {
+        margin-bottom: 20px;
+    }
+    
+    form input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    
+    form button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    form button:hover {
+        background-color: #45a049;
+    }
+    
+    form p {
+        margin-top: 10px;
+    }
+    
+    form a {
+        color: #4CAF50;
+        text-decoration: none;
+    }
+    
+    .search-bar {
+        width: 100%;
+        padding: 10px;
+        margin: 20px 0;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+    }
+    
+    .courses {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+    
+    .course-card {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 200px;
+        text-align: center;
+    }
+    
+    .course-card h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    
+    .course-card p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 10px;
+    }
+    
+    .course-card button {
+        padding: 8px 12px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    .course-card button:hover {
+        background-color: #45a049;
+    }
+    
+}
+
+
+
+@media  (max-width: 1484px ) {
+    
+    .cabecalho{
+        flex-direction: column;
+
+    }
+
+    .cabecalho-menu{
+        margin-top: 50px;
+        gap: 60px; 
+        height: 5px;
+
+    }
+
+    .cabecalho-menu-item {
+        font-size: 30px; 
+       
+    }
+    
+    /* Estilos para o item de login no menu */
+
+    .conteudo {
+        padding-top: 80px; 
+    }
+    .conteudo-principal{
+        flex-direction: column;
+        align-items: center;
+    }    
+
+    .conteudo-principal-imagem {
+        height: 330px;
+        margin-left: 0px; 
+        margin-right: 0px; 
+
+        
+    }
+    .landing_page {
+        background-image: none;
+        background-color: black;
+        align-items: center;
+    }
+
+    .conteudo-principal-escrito-botoes{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .conteudo-principal-escrito-titulo {
+        font-size: 44px; /* Define o tamanho da fonte do título */
+        
+        
+        
+    }
+
+    .conteudo-principal-escrito-paragrafo {
+        font-size: 34px; /* Define o tamanho da fonte do parágrafo */
+            
+        
+    }
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+<body class="landing_page">
+    
+
+
+    <main class="conteudo">
+        <section class="conteudo-principal">
+            <img src="static/imagens/vem.jpeg" alt="imagemdegarotatech" class="conteudo-principal-imagem">
+            <div class="conteudo-principal-escrito">
+                <h1 class="conteudo-principal-escrito-titulo">Comece agora com a melhor  escola de tecnologia</h1>
+                <p class="conteudo-principal-escrito-paragrafo">Vem para a TECH ACADEMY  e dê o start na carreira</p>
+                <div class="conteudo-principal-escrito-botoes">
+                    <button class="conteudo-principal-escrito-botao1"><a class="texto" href="{% url 'curso:lista_cursos' %}">Explorar os cursos</a></button>
+                    <button class="conteudo-principal-escrito-botao2"><a class="texto" href="{% url 'curso:criarconta' %}">Inscreva-se</a></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+{% endblock %}
